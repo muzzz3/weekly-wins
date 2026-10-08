@@ -1,0 +1,157 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.panel {
+  width: 72%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface-solid);
+  border-left: 1px solid var(--border-mid);
+  box-shadow: -12px 0 48px rgba(0, 0, 0, 0.4);
+  pointer-events: all;
+  animation: slideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panelClosing {
+  animation: slideOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(100%); opacity: 0; }
+}
+
+/* ── Toolbar ─────────────────────────────────────────────── */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-raised);
+  flex-shrink: 0;
+}
+
+.navBtns {
+  display: flex;
+  gap: 2px;
+}
+
+.toolBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  flex-shrink: 0;
+}
+
+.toolBtn:hover:not(:disabled) {
+  background: var(--bg-surface-solid);
+  border-color: var(--border-mid);
+  color: var(--text-secondary);
+}
+
+.toolBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.externalBtn {
+  composes: toolBtn;
+  font-size: 12px;
+}
+
+.externalBtn:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+.urlBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-mid);
+  border-radius: 8px;
+  padding: 4px 10px;
+  min-width: 0;
+}
+
+.sourceLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.urlText {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Loading bar ─────────────────────────────────────────── */
+
+.loadingBar {
+  height: 2px;
+  background: var(--border);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.loadingProgress {
+  height: 100%;
+  width: 40%;
+  background: var(--accent);
+  animation: loadSlide 1s ease-in-out infinite;
+}
+
+@keyframes loadSlide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* ── Webview ─────────────────────────────────────────────── */
+
+.webviewWrap {
+  flex: 1 1 0;
+  min-height: 0;
+  position: relative;
+}
+
+.webview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}

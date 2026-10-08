@@ -1,0 +1,10 @@
+appId: com.weeklyWins.app
+productName: Weekly Wins
+directories:
+  output: dist
+files:
+  - out/**/*
+mac:
+  target: dmg
+win:
+  target: nsis

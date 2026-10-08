@@ -1,0 +1,117 @@
+.container {
+  height: 100%;
+  padding: 16px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.monthLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 180px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.navBtn {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.navBtn:hover {
+  background: var(--bg-surface-solid);
+  color: var(--text-primary);
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 4px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+
+.emptyCell { border-radius: 12px; }
+
+.dayCell {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: 0;
+  font-family: inherit;
+}
+
+.dayCell:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.dayCellToday { box-shadow: 0 0 0 2px var(--accent); }
+.dayCellToday:hover { box-shadow: 0 0 0 2px var(--accent), 0 4px 16px var(--accent-subtle); }
+.dayCellEmpty { opacity: 0.35; }
+
+.dayNum {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.dayNumToday { color: var(--accent); }
+
+.score {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  align-self: flex-end;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--dot-bg);
+  align-self: flex-end;
+}

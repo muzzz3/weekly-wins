@@ -1,0 +1,233 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 0;
+  cursor: default;
+}
+
+/* Clouds for blue theme */
+[data-theme="blue"] .backdrop::before {
+  content: '☁️';
+  position: absolute;
+  font-size: 130px;
+  top: -10px;
+  right: 10px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+[data-theme="blue"] .backdrop::after {
+  content: '☁️';
+  position: absolute;
+  font-size: 80px;
+  bottom: 30px;
+  left: 20px;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+/* Cherry blossom petals for sakura theme */
+[data-theme="sakura"] .backdrop::before {
+  content: '🌸';
+  position: absolute;
+  font-size: 120px;
+  top: -20px;
+  right: -20px;
+  opacity: 0.25;
+  transform: rotate(20deg);
+  pointer-events: none;
+}
+
+[data-theme="sakura"] .backdrop::after {
+  content: '🌸';
+  position: absolute;
+  font-size: 90px;
+  bottom: 20px;
+  left: 10px;
+  opacity: 0.2;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 92vw;
+  height: 92vh;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--card-shadow), 0 0 0 1px var(--accent-ring);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px 12px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brandDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.brandName {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.viewSwitcher {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.viewBtn {
+  padding: 4px 14px;
+  border-radius: 7px;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+}
+
+.viewBtn:hover { color: var(--text-secondary); }
+
+.viewBtnActive {
+  background: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--tab-bg);
+  border-radius: 12px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.tab {
+  padding: 6px 16px;
+  border-radius: 9px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+}
+
+.tab:hover { color: var(--text-secondary); }
+
+.tabActive {
+  background: var(--accent);
+  color: #fff;
+}
+
+.themeToggle {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.themeToggle:hover {
+  background: var(--bg-surface-solid);
+  border-color: var(--border-mid);
+}
+
+.iconBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-mid);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.iconBtn:hover {
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+  border-color: var(--border-mid);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 20px;
+  flex-shrink: 0;
+}
+
+.main {
+  flex: 1;
+  overflow: hidden;
+}

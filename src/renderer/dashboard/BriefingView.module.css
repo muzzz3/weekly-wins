@@ -1,0 +1,478 @@
+/* ── Two-column outer layout ────────────────────────────── */
+
+.outerLayout {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Today panel (left column) ──────────────────────────── */
+
+.todayPanel {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 20px;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+}
+
+.todayHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.todayGreeting {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.todayDate {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.focusBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.focusLabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.focusInput {
+  width: 100%;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+  line-height: 1.5;
+  min-height: 38px;
+}
+
+.focusInput:focus { border-color: var(--accent-border); }
+.focusInput::placeholder { color: var(--text-faint); font-style: italic; }
+
+.overdueCallout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.overdueIcon { font-size: 13px; flex-shrink: 0; }
+
+.todayProgressRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.todayProgressBar {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-raised);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.todayProgressFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.todayProgressLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.todayTodos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.todayTodoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px;
+  border-radius: 8px;
+  transition: background 0.12s;
+}
+
+.todayTodoRow:hover { background: var(--bg-raised); }
+
+.todayTodoDone { opacity: 0.5; }
+
+.todayTodoText {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todayTodoTextDone { text-decoration: line-through; color: var(--text-muted); }
+
+.todayEmpty {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+  padding: 4px 0;
+}
+
+.todayFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.todayStatChip {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.todayNudge {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── World column (right) ───────────────────────────────── */
+
+.worldCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 24px;
+  overflow-y: auto;
+}
+
+/* ── Loading / error states ─────────────────────────────── */
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+}
+
+.stateText {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-mid);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.retryBtn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-mid);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.retryBtn:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+/* ── Top row ────────────────────────────────────────────── */
+
+.topRow {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+/* ── Weather card ───────────────────────────────────────── */
+
+.weatherCard {
+  width: 220px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.weatherLocation {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.weatherMain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0;
+}
+
+.weatherEmoji {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.weatherTemp {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.weatherCondition {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.weatherStats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 10px;
+  background: var(--bg-raised);
+  border-radius: 10px;
+  padding: 8px 0;
+}
+
+.weatherStat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.weatherStatLabel {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.weatherStatValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.weatherStatDivider {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* Weather condition tints */
+.tintSunny  { border-color: rgba(251,191,36,0.35);  background: rgba(251,191,36,0.05); }
+.tintCloudy { border-color: var(--border); }
+.tintFog    { border-color: rgba(148,163,184,0.3); background: rgba(148,163,184,0.04); }
+.tintRain   { border-color: rgba(59,130,246,0.3);  background: rgba(59,130,246,0.05); }
+.tintSnow   { border-color: rgba(186,230,253,0.4); background: rgba(186,230,253,0.05); }
+.tintStorm  { border-color: rgba(139,92,246,0.3);  background: rgba(139,92,246,0.05); }
+
+/* ── Top headlines card ─────────────────────────────────── */
+
+.topNewsCard {
+  flex: 1;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.widgetLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.topNewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.topNewsItem {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  transition: background 0.12s;
+}
+
+.topNewsItem:hover { background: var(--bg-raised); }
+
+.topNewsSource {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 52px;
+}
+
+.topNewsTitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Category rows ──────────────────────────────────────── */
+
+.categorySection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.categoryRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.categoryLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-left: 2px;
+}
+
+.categoryScroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.categoryScroll::-webkit-scrollbar { display: none; }
+
+.articleCard {
+  flex-shrink: 0;
+  width: 200px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s;
+}
+
+.articleCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  border-color: var(--accent-border);
+  background: var(--bg-raised);
+}
+
+.articleSource {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.articleTitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
