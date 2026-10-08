@@ -9,15 +9,27 @@ A private, local-first desktop app for effortless work tracking and AI-generated
 ### Prerequisites
 - [Node.js](https://nodejs.org) 20 or later
 - [Ollama](https://ollama.com) — only needed for AI summaries; the app otherwise works fine without it
+
+  Install it:
+  ```bash
+  brew install ollama       # macOS
+  # or download an installer for Windows/Linux from https://ollama.com/download
+  ```
+
+  Start the Ollama server (leave this running in the background — on macOS, installing via the Ollama app does this for you automatically):
+  ```bash
+  ollama serve
+  ```
+
+  Then, in a separate terminal, pull the two models this app uses:
   ```bash
   ollama pull llama3.2
   ollama pull mistral
-  ollama serve
   ```
 
 ### Setup
 ```bash
-git clone <this repo's URL>
+git clone https://github.com/muzzz3/weekly-wins.git
 cd weekly-wins
 npm install   # also rebuilds better-sqlite3 for Electron automatically
 npm run dev
